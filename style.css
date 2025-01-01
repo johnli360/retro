@@ -1,0 +1,132 @@
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+body {
+    background: var(--background-color);
+    color: var(--text-color);
+}
+p {
+    color: var(--text-color);
+}
+textarea {
+    background-color: var(--background-color);
+    /* color: var(--text-color-bright); */
+    color: var(--text-color);
+    border: 1px solid;
+    border-color:  var(--inactive-border-color);
+}
+
+input {
+  background-color: var(--background-color);
+  color: var(--text-color-bright);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+      --background-color: #3e4c59;
+      --text-color: #ddd;
+      --text-color-bright: #fff;
+      --inactive-border-color: #333;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+}
+
+.container {
+  flex: 1;
+  display: flex;
+  justify-content: spacing;
+  gap: 5ch;
+  text-align: center;
+}
+
+.column {
+  width: 30ch;
+  /*max-width: 22ch;*/
+}
+
+.col_header {
+  text-align: center;
+}
+
+.tickets {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 2vh;
+  padding-bottom: 2ch;
+}
+
+:root {
+  /*--ticket-width: 20ch;*/
+  --ticket-width: 28ch;
+}
+
+.ticket {
+  border:1px solid var(--inactive-border-color);
+  padding-left: 1ch;
+  padding-right: 1ch;
+  max-width: var(--ticket-width);
+  min-width: var(--ticket-width);
+  text-align: left;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+  position:relative;
+  z-index: 1;
+}
+
+.vote_div {
+    position: absolute;
+    top: 50%;
+    right: -0.5ch;
+    transform: translate(50%, -50%);
+
+    height: 2ch;
+    bottom: 50%;
+    background-color: var(--background-color);
+
+}
+
+.vote_count {
+    padding-right: 1ch;
+    /*padding-left: 1ch;*/
+}
+
+.ticket_selected {
+  border-color: lightblue;
+}
+
+.add_ticket_textarea {
+    max-width: 100%;
+    min-width: 100%;
+    box-sizing: border-box;
+    width: 100%;
+    height: auto;
+    padding: 0ch;
+    font-family: serif;
+    /*font-size: 16px;*/
+    resize: none;
+    outline: none;
+    border: none;
+    overflow-y: hidden; /* Hide vertical scrollbar */
+    border-bottom:1px solid;
+    text-align: left;
+    overflow-wrap: break-word;
+}
+
+.hidden_button {
+    display: none;
+    /*visibility: hidden;*/
+}
+
+footer {
+    position: fixed;
+    right: 3vw;
+    bottom: 0vw;
+}

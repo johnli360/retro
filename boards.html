@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Retro</title>
+
+        <link rel="stylesheet" type="text/css" href="../style" />
+    </head>
+    <body>
+        <h1>Boards</h1>
+        <div class="container" id="board_list">
+        </div>
+
+        <script>
+            async function fetch_boards() {
+                const response = await fetch("/board_names");
+                const board = await response.json();
+                console.log("list_boards: " + board);
+                return board;
+            };
+
+            async function main() {
+                const board_list = document.querySelector("#board_list");
+                console.log("cookie: " + document.cookie);
+                const boards = await fetch_boards();
+                for (let i = 0; i < boards.length; i++) {
+                    const board_name = boards[i];
+                    const link = document.createElement('a');
+                    link.setAttribute('href', `/board/${board_name}`);
+                    link.textContent = board_name;
+                    console.log("board link: " + link);
+                    board_list.appendChild(link);
+                }
+            };
+            main().catch(err => console.log("main err: " + err));
+
+        </script>
+    </body>
+</html>

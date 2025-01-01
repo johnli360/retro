@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Retro</title>
+
+        <link rel="stylesheet" type="text/css" href="../style" />
+    </head>
+    <body>
+        <h1 id="board_id"></h1>
+
+        <input id="username_input" style="display:block; width:30ch; box-sizing: border-box" type="text" placeholder="username">
+        <button id="join" type="button">join</button>
+
+        <div class="container" id="cols">
+
+
+        </div>
+
+        <!--<footer>-->
+        <!--  <div>-->
+        <!--    <p>Logged in as: <span id="username_display"></span>-->
+        <!--    <br>-->
+        <!--    Connected: <span id="peers"></span>-->
+        <!--    </p>-->
+        <!--  </div>-->
+        <!--</footer>-->
+
+        <!--<script type="text/javascript" src="../script"></script>-->
+        <script>
+
+            async function validate_login(user) {
+                const response = await fetch(`/validate_login/${user}`);
+                //const board = await response.json();
+                //return board;
+                return response.ok;
+            };
+
+            async function main() {
+
+                const username_input = document.querySelector("#username_input");
+                //const username_display = document.querySelector("#username_display");
+                const join_btn = document.querySelector("#join");
+
+                async function login() {
+                    console.log("login");
+                    const user = username_input.value;
+                    if (user && user === '') {
+                      return;
+                    }
+                    //window.location.href = `/validate_login/${user}`;
+
+                    const valid = await validate_login(user);
+                    console.log("valid login: " + valid);
+                    console.log("cookie: " + document.cookie);
+                    document.cookie = `SESSION=${user}; SameSite=Strict;`;
+                    if (valid) {
+                        window.location.href = '/boards';
+                    }
+                }
+
+                join_btn.addEventListener('click', login);
+            }
+            main().catch(err => console.log("main err: " + err));
+        </script>
+    </body>
+</html>
