@@ -36,6 +36,13 @@ input {
 }
 
 @media (prefers-color-scheme: light) {
+    /* TODO: different colors */
+  :root {
+      --background-color: #3e4c59;
+      --text-color: #ddd;
+      --text-color-bright: #fff;
+      --inactive-border-color: #333;
+  }
 }
 
 .container {
